@@ -640,9 +640,6 @@ class ObjectTracker:
         """
 
 
-
-
-
         raw_data = {'Fish': self.fish_position,
                     'Cage': self.cage_position}
 
@@ -839,8 +836,6 @@ class ObjectTracker:
                 changemame(f=adsoyad)
 
 
-
-
             root = Tk()
             root.resizable(width=True, height=True)# if we dont want to resize window take command line this
             canvas = Canvas(root, height=1000, width=600)
@@ -870,10 +865,6 @@ class ObjectTracker:
             root.mainloop()
 
 
-
-        #t1 = threading.Thread(target=gui)
-        #print("burdayim")
-
         def cont():
             def openFile():
                 self.filepath = filedialog.askopenfilename(initialdir=r"C:\Users\Lenovo\PycharmProjects\Zebrafish",
@@ -892,7 +883,6 @@ class ObjectTracker:
                 self.like = dataset.iloc[2:, 3].values
 
                 self.cage = dataset.iloc[:,1].values
-
 
 
                 file.close()
@@ -926,14 +916,11 @@ class ObjectTracker:
 
 
 
-
                 cv.putText(self.current_frame, f'Frame: {str(int(self.video.get(cv.CAP_PROP_POS_FRAMES))-1)}', (20, 50),
                            cv.FONT_HERSHEY_SIMPLEX, 0.75, (50, 170, 50), 2)
                 cv.circle(self.current_frame, point, 7, (0, 0, 255), -1)
                 cv.namedWindow("CSVVideo", cv.WND_PROP_FULLSCREEN)
                 cv.imshow("CSVVideo", self.current_frame)
-
-
 
 
 
@@ -991,9 +978,6 @@ class ObjectTracker:
 
 
 
-
-
-
                 if i==1500:
                     break
 
@@ -1031,12 +1015,4 @@ class ObjectTracker:
                 print(self.newfilepath)
                 dx.to_csv(self.newfilepath, index=False)
 
-
-
-
         cont()
-
-
-
-
-
