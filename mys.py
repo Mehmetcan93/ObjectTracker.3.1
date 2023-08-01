@@ -3,7 +3,7 @@
 # Created on : 24.09.2022
 # Updated on : 01.08.2023
 # Author     : Mehmet Yücel Sarıtaş, Mehmetcan Gökçe
-# Version    : 3.1 111111
+# Version    : 3.1
 # ----------------------------------------------------------------------------------
 import shutil
 from objecttracker import ObjectTracker
@@ -16,21 +16,13 @@ from tkinter.filedialog import askdirectory
 from tkinter import filedialog
 
 # ----------------------------------------------------------------------------------
-# SINGLE FILE ANALYSIS PARAMETERS
-# ----------------------------------------------------------------------------------
-single_main_folder_name = r"C:\Users\Lenovo\PycharmProjects\Zebrafish\Low\14 cm window\Light"
-conductivity = "Low"                         # low | medium | high
-light_option = "14 cm window"                        # dark | dimlight | light
-cage_option = "Light"                  # 7|14|21 cm nowindow | 7|14|21 cm window
-single_f_name = "Zebrafish12"
-# ----------------------------------------------------------------------------------
 # MULTIPLE FILES ANALYSIS PARAMETERS
 # ----------------------------------------------------------------------------------
-multi_main_folder_name = r"C:/Users/Lenovo/PycharmProjects/Zebrafish/örn"               #needs
+multi_main_folder_name = r"C:/Users/Lenovo/PycharmProjects/Zebrafish/örn"            #For multiple tracking, you should put the file path of the videos here.
 # ----------------------------------------------------------------------------------
 # MAIN PARAMETERS
 # ----------------------------------------------------------------------------------
-SINGLE_FILE_ANALYSIS = True # To test only one file or Whole Folder                     #needs
+SINGLE_FILE_ANALYSIS = True # To test only one file or Whole Folder
 REC = True  # To enable video recording
 EXCEL_WRITE = True  # To enable extract cage and fish information to excel
 DEBUG = True
@@ -44,57 +36,15 @@ debug_path = []  # The path where fft and position graphs are created
 root_paths = []
 template_trackers = []  # To hold each template_matching object
 var=0
-AnalayzingCSV= True
-
-
-def changebutton():
-    print("entered here")
-    global var
-    var= 1
-    print(var)
-
-def gui():
-    def get_folder_path():
-
-
-
-        root = Tk()
-        root.withdraw()
-        global file_path
-
-        file_path = filedialog.askopenfile()
-        if file_path:
-            print("Seçilen klasör:", file_path)
-        debug_path = askdirectory()
-        if debug_path:
-            print("Seçilen klasör:", debug_path)
-
-
-    get_folder_path()
-
-
-    print("guiye girdim")
-
-
-#gui()
+AnalayzingCSV= False
 
 def single_file_analysis():
-    #video_folder = os.path.join(single_main_folder_name, conductivity, light_option, cage_option)
-    #file_path = os.path.join(video_folder, single_f_name + "." + video_format)
 
-    #excel_path.append(os.path.join(video_folder, single_f_name + "." + excel_format))
-
-
-    # Debug Folder
-    #debug_path.append(os.path.join(video_folder, single_f_name + "_DEBUG/"))
 
 
 
     def get_folder_path():
 
-
-        #root = Tk()        file_path
-        #root.withdraw()
         global file_path
         global debug_path
 
@@ -104,7 +54,7 @@ def single_file_analysis():
 
 
         if file_path:
-            # Dosya yolunu al
+
             path = file_path.name
             print(path)
             file_path.close()

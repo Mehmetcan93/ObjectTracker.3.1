@@ -131,10 +131,7 @@ class ObjectTracker:
                                   img=self.current_frame, showCrosshair=True, fromCenter=True)
 
         self.stop = False
-        #self.window.after(100, self.video_loop)#mhmtcn
 
-        #self.window.wm_protocol("WM_DELETE_WINDOW", self.on_close)#mhmtcn
-        #self.window.mainloop()#mhmtcn
         cv.destroyWindow(f"{self.video_number}. Video's Templates")
 
         if len(self.bbox) == 2 :
