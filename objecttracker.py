@@ -176,8 +176,6 @@ class ObjectTracker:
         def changemame(f):
             self.name= f
 
-
-
         def gui():
             def update_plot():
                 ax.clear()
@@ -272,7 +270,7 @@ class ObjectTracker:
 
 
 
-        print(self.newvar)
+
         def devami():
             v = 0
 
@@ -923,14 +921,10 @@ class ObjectTracker:
                 cv.imshow("CSVVideo", self.current_frame)
 
 
-
-
                 self.interrupt_key = cv.waitKey(0) & 0xFF
 
-
-
-
                 if self.interrupt_key == ord('p'):
+                    print("Code is finished!")
                     break
                 elif self.interrupt_key == ord("n"):
                     print("n pressed")
@@ -940,7 +934,7 @@ class ObjectTracker:
                     if not ok:
                         break
                     print(i)
-                    print(int(self.video.get(cv.CAP_PROP_POS_FRAMES)))
+                    #print(int(self.video.get(cv.CAP_PROP_POS_FRAMES)))
                     print(point)
 
                     i=i+1
@@ -952,7 +946,7 @@ class ObjectTracker:
                     ok, self.current_frame = self.video.read()
                     if not ok:
                         break
-                    print(int(self.video.get(cv.CAP_PROP_POS_FRAMES)))
+                    #print(int(self.video.get(cv.CAP_PROP_POS_FRAMES)))
                     i=i-1
 
                 elif self.interrupt_key == ord('c'):
@@ -981,28 +975,28 @@ class ObjectTracker:
                 if i==1500:
                     break
 
-            with open(self.filepath, 'r') as dosya:
+            with open(self.filepath, 'r') as filex:
 
-                okuyucu = csv.reader(dosya)
+                reader = csv.reader(filex)
 
-                print(okuyucu)
-
-
-                yeni_veriler = []
-                for satir in okuyucu:
+                print(reader)
 
 
+                new_datas = []
+                for line in reader:
 
-                    satir[0] = self.coor
-                    satir[1]= self.x
-                    satir[2]= self.y
-                    satir[3] = self.like
 
-                    yeni_veriler.append(satir)
-                raw_data = {'coords': satir[0],
-                            'x': satir[1],
-                            'y': satir[2],
-                            'likelihood': satir[3]}
+
+                    line[0] = self.coor
+                    line[1]= self.x
+                    line[2]= self.y
+                    line[3] = self.like
+
+                    new_datas.append(line)
+                raw_data = {'coords': line[0],
+                            'x': line[1],
+                            'y': line[2],
+                            'likelihood': line[3]}
 
                 dx = pd.DataFrame(raw_data, columns=['coords',
                                                      'x',

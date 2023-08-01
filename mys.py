@@ -36,7 +36,7 @@ debug_path = []  # The path where fft and position graphs are created
 root_paths = []
 template_trackers = []  # To hold each template_matching object
 var=0
-AnalayzingCSV= False
+AnalayzingCSV= True
 
 def single_file_analysis():
 
@@ -61,7 +61,6 @@ def single_file_analysis():
 
             print("selected file:",path)
             file_path = path
-
 
 
 
