@@ -3,7 +3,7 @@
 # Created on : 24.09.2022
 # Updated on : 01.08.2023
 # Author     : Mehmet Yücel Sarıtaş, Mehmetcan Gökçe
-# Version    : 3.1 heyo
+# Version    : 3.1
 # ----------------------------------------------------------------------------------
 import shutil
 from objecttracker import ObjectTracker
@@ -69,13 +69,11 @@ def single_file_analysis():
         debug_path = askdirectory()
         if debug_path:
             print("selected debug path:", debug_path)
-            #root.destroy()
 
 
 
     get_folder_path()
 
-    print("file path altta yazcak")
     print(file_path)
     template_matching = ObjectTracker( file_path, 1 ,debug_path, debug=DEBUG, rec=REC, threshold=CORRELATION_THRESHOLD,VAR=var)
     if AnalayzingCSV:

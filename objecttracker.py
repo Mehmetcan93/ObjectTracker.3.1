@@ -1,20 +1,14 @@
-import time
-
 import cv2 as cv
-import sys
 import os
 import pandas as pd
-import xlsxwriter
 import numpy as np
 import matplotlib.pyplot as plt
 from numpy.fft import fft
 import csv
 from tkinter import *
 from PIL import Image, ImageTk
-from imutils.video import VideoStream
 import threading
 from tkinter import filedialog
-from matplotlib.animation import FuncAnimation
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from matplotlib.figure import Figure
 
@@ -91,11 +85,6 @@ class ObjectTracker:
         print(self.video_path)
         print("################")
         self.video = cv.VideoCapture(self.video_path)
-        #cv.namedWindow("Tracking", cv.WND_PROP_FULLSCREEN)
-
-
-
-
 
 
 
@@ -120,9 +109,6 @@ class ObjectTracker:
 
         cv.putText(self.current_frame, 'To select box press "SPACE" (First Fish !) ', (30, 30),cv.FONT_HERSHEY_SIMPLEX, 0.60, (0, 0, 0), 2)
         cv.putText(self.current_frame, 'To continue press "ESC"', (30, 55), cv.FONT_HERSHEY_SIMPLEX, 0.60, (0, 0, 0), 2)
-
-        #cv.namedWindow(f"{self.video_number}. Video's Templates bu mu", cv.WND_PROP_FULLSCREEN)
-        #cv.moveWindow(f"{self.video_number}. Video's Templates bu mu", 500, 100)
 
         # Define an initial bounding box
         # [Top_Left_X, Top_Left_Y, Width, Height]
@@ -538,7 +524,7 @@ class ObjectTracker:
                                 print("l pressed")
 
                                 wanted_frame = int(self.name)-1
-                                #print("burdayım")
+
                                 print(wanted_frame)
 
                                 self.video.set(cv.CAP_PROP_POS_FRAMES, wanted_frame)
@@ -645,40 +631,15 @@ class ObjectTracker:
         self.cage_position[int(self.video.get(cv.CAP_PROP_POS_FRAMES)) - 1] = cage_x_position
         self.analayzfish[int(self.video.get(cv.CAP_PROP_POS_FRAMES)) - 1] = fish_y_position# yposition
         self.analayzcage[int(self.video.get(cv.CAP_PROP_POS_FRAMES)) - 1] = cage_y_position
-        #print(self.fish_position)
+
 
     def store_positions(self):
         """
-        Writes cage and fish positions to excel file.
-worksheet = workbook.add_worksheet()
-        content = ["Fish", "Cage"]
-        columns_width = [6, 6]
-        header_format = workbook.add_format({
-            'font_color': 'black',
-            'bold': 1,
-            'font_size': 13,
-            'align': 'left'
-        })
-        column = 0
-        for item in content:
-            worksheet.write(0, column, item, header_format)
-            worksheet.set_column(column, column, columns_width[column])
-            column += 1
 
-        data = {
-            "fish": self.fish_position,
-            "refuge": self.cage_position
-        }
-        df = pd.DataFrame(data)
-        df.to_excel(file_name, index=False)
         :return:
         """
 
-        #file_name = os.path.join(self.csv_path)
-       # workbook = xlsxwriter.Workbook(file_name)
-        #object_header=["fish","cage"]
 
-      #  print(self.video.get(cv.CAP_PROP_POS_FRAMES))
 
 
 
@@ -704,7 +665,7 @@ worksheet = workbook.add_worksheet()
 
 
 
-         # 3. Write data to the file
+
 
 
 
@@ -736,7 +697,7 @@ worksheet = workbook.add_worksheet()
         ax1.plot(t, final_cropped_cage_signal, color="r", label="refuge", linewidth=1.5)
         ax1.plot(t, final_cropped_fish_signal, color="b", label="fish", linewidth=1.5)
         ax1.legend()
-        print("here123")
+
         if self.DEBUG:
             my_file = '1_Time_Domain_cage_vs_fish.jpg'
 
@@ -797,7 +758,7 @@ worksheet = workbook.add_worksheet()
         xi = self.bbox[0][0]  # initial x position
         xf = xi + self.bbox[0][2]  # final x position
 
-        #print(yi,yf,xi,xf)
+
         if xi<1 or xf>495 or yi<1 or yf>1023 :
             print("HEY FISH IS GOING")
             self.var = 2
@@ -1020,7 +981,6 @@ worksheet = workbook.add_worksheet()
 
                     self.x[i]=self.box[0] + self.box[2] / 2 # y coordinates don't confuse
                     self.y[i]=self.box[1] + self.box[3]/ 2 # x coordinates
-                    print("bura degisen frame olmalı",i)
                     print(self.x[i])
                     print(self.y[i])
                     #i=i+1
@@ -1032,32 +992,28 @@ worksheet = workbook.add_worksheet()
 
 
 
-                print("burası koddaki frame:",i)
-                #cv.waitKey(1000)
+
 
                 if i==1500:
                     break
-            print("buraya geldim")
+
             with open(self.filepath, 'r') as dosya:
-                # CSV dosyasını okuyucu nesnesiyle açın
+
                 okuyucu = csv.reader(dosya)
 
                 print(okuyucu)
 
-                # Satırları okuyun ve sütunları değiştirerek yeni bir liste oluşturun
+
                 yeni_veriler = []
                 for satir in okuyucu:
-                    # 2. ve 3. sütunları değiştirin
-                    #print(satir[3])
 
-                    #satir[0] = satir[0]
+
+
                     satir[0] = self.coor
                     satir[1]= self.x
                     satir[2]= self.y
                     satir[3] = self.like
-                    #satir[3]= satir[3]
 
-                    # Değiştirilmiş satırı yeni verilere ekleyin
                     yeni_veriler.append(satir)
                 raw_data = {'coords': satir[0],
                             'x': satir[1],
@@ -1079,12 +1035,7 @@ worksheet = workbook.add_worksheet()
 
 
         cont()
-        #t2 = threading.Thread(target=cont)
-        #t1.start()
 
-        #t2.start()
-        #t1.join()
-        #t2.join()
 
 
 
